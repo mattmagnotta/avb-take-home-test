@@ -1,7 +1,9 @@
 /* .App {
   text-align: center;
 } */
-
+html {
+  background: #f1f1f1;
+}
 .App-logo {
   height: 20vmin;
   pointer-events: none;
@@ -20,4 +22,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }

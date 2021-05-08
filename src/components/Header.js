@@ -5,9 +5,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { openCommentsModal } from "store/slices/view";
+
 //components
 import TopCommenters from "./TopCommenters";
-import { openCommentsModal } from "store/slices/view";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     flexGrow: 1,
+    color: "white",
   },
 }));
 
@@ -34,7 +36,7 @@ const Header = (props) => {
             Commentor
           </Typography>
 
-          <Button color="inherit" onClick={handleOpen}>
+          <Button style={{ color: "white" }} onClick={handleOpen}>
             Add Comment
           </Button>
         </Toolbar>

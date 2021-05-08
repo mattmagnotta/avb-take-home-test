@@ -1,16 +1,34 @@
+import Avatar from "@material-ui/core/Avatar";
+import { makeStyles } from "@material-ui/core/styles";
+// elements
 import {
   TopCommentersContainer,
+  TopCommentersContents,
   TopCommentersBlock,
+  TopCommentersText,
+  TopCommentersTextBlockContainer,
+  TopCommentersName,
+  TopCommentersCount,
+  Heading,
 } from "./TopCommentersElements";
-import Avatar from "@material-ui/core/Avatar";
-import { useEffect } from "react";
 
+const useStyles = makeStyles((theme) => ({
+  blue: {
+    color: "black",
+    backgroundColor: "#FFF176",
+  },
+}));
+
+//Recieves the comments array as props. Displays top commenters in descending order, if commenters have an equal ammount of comments it displays in most recent order.
 const TopCommenters = (props) => {
+  const classes = useStyles();
   const { comments } = props;
-  console.log(comments);
+
+  // a helper function to call that takes in a array returns an array with key value pairs for how many times a user has commented
   const getTop3 = (comments) => {
     const commentsMap = new Map();
 
+    // loop through the array provided and create a map with names as the keys and the count as the value
     comments.forEach((comment, i) => {
       if (!commentsMap.has(comment.name)) {
         commentsMap.set(comment.name, 1);
@@ -19,36 +37,48 @@ const TopCommenters = (props) => {
       }
     });
 
+    //sorting the map by value
     const sortedCommentsMap = new Map(
       [...commentsMap.entries()].sort((a, b) => b[1] - a[1])
     );
 
+    // creating an array out of the sorted map
     let topCommentsArray = Array.from(sortedCommentsMap, ([name, value]) => ({
       name,
       value,
     }));
-
-    console.log(topCommentsArray);
-
     return topCommentsArray;
   };
 
+  // calling the helper function and slicing the array to get the top 3 commenters
   let topCommentsArray = getTop3(comments).slice(0, 3);
-  console.log(topCommentsArray);
+
   return (
     <TopCommentersContainer>
-      {topCommentsArray.map((comment, index) => {
-        return (
-          <TopCommentersBlock>
-            <Avatar>{comment.name.slice(0, 1)}</Avatar>
-            <div>
-              <div>{comment.name}</div>
-              <div>Total Comments: {comment.value} </div>
-            </div>
-          </TopCommentersBlock>
-        );
-      })}
+      <TopCommentersContents>
+        <Heading>Top Commenters</Heading>
+        <TopCommentersTextBlockContainer>
+          {topCommentsArray.map((comment, index) => {
+            return (
+              <TopCommentersBlock key={index}>
+                <Avatar className={classes.blue}>
+                  {comment.name.slice(0, 1)}
+                </Avatar>
+                <TopCommentersText>
+                  <TopCommentersName>
+                    {comment.name.slice(0, 20)}
+                  </TopCommentersName>
+                  <TopCommentersCount>
+                    Comments: {comment.value}{" "}
+                  </TopCommentersCount>
+                </TopCommentersText>
+              </TopCommentersBlock>
+            );
+          })}
+        </TopCommentersTextBlockContainer>
+      </TopCommentersContents>
     </TopCommentersContainer>
   );
 };
+
 export default TopCommenters;
