@@ -5,7 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
+//components
+import TopCommenters from "./TopCommenters";
 import { openCommentsModal } from "store/slices/view";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,24 +19,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = (props) => {
+  let { comments } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleOpen = () => dispatch(openCommentsModal());
 
   return (
-    <AppBar position="fixed" className={classes.root}>
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          Commentor
-        </Typography>
+    <>
+      <AppBar position="fixed" className={classes.root}>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            Commentor
+          </Typography>
 
-        <Button color="inherit" onClick={handleOpen}>
-          Add Comment
-        </Button>
-      </Toolbar>
-    </AppBar>
+          <Button color="inherit" onClick={handleOpen}>
+            Add Comment
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <TopCommenters comments={comments} />
+    </>
   );
 };
 
