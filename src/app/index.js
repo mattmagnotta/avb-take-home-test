@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { deepOrange, deepPurple } from "@material-ui/core/colors";
+
 import axios from "axios";
 import "app/App.css";
 
@@ -21,7 +22,7 @@ function App() {
         main: "#00BCD4",
       },
       secondary: {
-        main: "#11cb5f",
+        main: "#f1f1f1",
       },
     },
   });
@@ -38,13 +39,13 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <>
         <Header comments={comments} />
         <CommentModal comments={comments} setComments={setComments} />
         <Comments comments={comments} />
       </>
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 

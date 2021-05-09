@@ -11,9 +11,10 @@ import {
   TopCommentersCount,
   Heading,
 } from "./TopCommentersElements";
-
+//images
+import topCommenter from "../../images/topCommenters.svg";
 const useStyles = makeStyles((theme) => ({
-  blue: {
+  yellow: {
     color: "black",
     backgroundColor: "#FFF176",
   },
@@ -56,13 +57,13 @@ const TopCommenters = (props) => {
   return (
     <TopCommentersContainer>
       <TopCommentersContents>
-        <Heading>Top Commenters</Heading>
+        <img width={400} src={topCommenter} />
         <TopCommentersTextBlockContainer>
           {topCommentsArray.map((comment, index) => {
             return (
               <TopCommentersBlock key={index}>
-                <Avatar className={classes.blue}>
-                  {comment.name.slice(0, 1)}
+                <Avatar className={classes.yellow}>
+                  {comment.name.slice(0, 1).toUpperCase()}
                 </Avatar>
                 <TopCommentersText>
                   <TopCommentersName>

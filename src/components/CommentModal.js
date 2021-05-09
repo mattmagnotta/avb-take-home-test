@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 //components
 import Modal from "@material-ui/core/Modal";
 import Form from "./Form";
@@ -21,6 +21,7 @@ const CommentModal = (props) => {
   let { comments, setComments } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const isOpen = useSelector(getViewCommentsModalOpen);
 

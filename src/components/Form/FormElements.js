@@ -19,9 +19,9 @@ export const FormInput = styled.input`
   transition: all 200ms ease;
   border-left: 0 solid transparent;
   border: 0;
+  width: 500px;
   height: 3.8rem;
-  border-radius: 13px;
-  padding: 0 calc(5.8rem * 0.5);
+  border-radius: 3px;
   box-shadow: 0 0 2rem rgb(0, 0, 0, 20%);
 `;
 export const FormTextArea = styled.textarea`
@@ -32,8 +32,8 @@ export const FormTextArea = styled.textarea`
   border-left: 0 solid transparent;
   border: 0;
   height: 6.8rem;
-  padding: 0 calc(5.8rem * 0.5);
-  border-radius: 13px;
+  width: 500px;
+  border-radius: 3px;
   box-shadow: 0 0 2rem rgb(0, 0, 0, 20%);
 `;
 export const Button = styled.button`
