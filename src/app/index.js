@@ -9,11 +9,11 @@ import "app/App.css";
 import Header from "components/Header";
 import CommentModal from "components/CommentModal";
 import Comments from "components/Comments";
-
+import { mockComments } from "../store/api.js";
 // using app as the closest ancestor to share state between components
 function App() {
   //global state to be used by the child components
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(mockComments);
   //creating the theme for the app
   const theme = createMuiTheme({
     shadows: ["none"],
@@ -27,17 +27,17 @@ function App() {
     },
   });
 
-  //fetching data from the provided api and setting the state with the data
+  // fetching data from the provided api and setting the state with the data
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         "https://jsonplaceholder.typicode.com/comments"
       );
-      setComments(result.data);
+      setComments(result.data, [...comments]);
     };
     fetchData();
   }, []);
-
+  console.log(comments);
   return (
     <MuiThemeProvider theme={theme}>
       <>
